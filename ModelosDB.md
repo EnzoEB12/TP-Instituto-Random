@@ -5,10 +5,9 @@
 #### *Las Colecciones Creadas:⬇.*
 
 - [Usuarios](####USUARIOS)
-
-- [Perfiles](####PERFILES)
-
 - [Materias](####MATERIAS)
+- [Publicaciones](####PUBLICACIONES)
+- [Comentarios](####COMENTARIOS)
 
 #
 
@@ -20,31 +19,28 @@
     dni: {type: String,required: true},
     email: {type: String,required: true},
     contrasena: {type: String,required: true},
-    activo: {type: Boolean,default: true}
-}
-```
-####  **PERFILES**
-```js
-{
-    //Ref
-    usuario: {type: mongoose.Schema.Types.ObjectId,ref: 'User'},
-    tipo: [
+    fotoURL:{type: String,required: true},
+    Perfiles [
         {
-            alumno:{type: Boolean,default: true},
-            profesor:{type: Boolean,default: false},
-            administrados:{type: Boolean,default: false},
+            tipo: [
+                {
+                    alumno:{type: Boolean,default: true},
+                    profesor:{type: Boolean,default: false},
+                    administrados:{type: Boolean,default: false},
+                }
+            ],
+            dataAlumno:[
+                {
+                    carrera:{type: String}, 
+                    analitico: {type: String},
+                    certificadoDomicilio: {type: String},
+                }
+            ],
+            dataProfesores:[{datos: {type: String}}
+            ],
+            dataAdmin:[{datos: {type: String},}
+            ]
         }
-    ],
-    dataAlumno:[
-        {
-            carrera:{type: String}, 
-            analitico: {type: String},
-            certificadoDomicilio: {type: String},
-        }
-    ],
-    dataProfesores:[{datos: {type: String}}
-    ],
-    dataAdmin:[{datos: {type: String},}
     ],
     activo: {type: Boolean,default: true}
 }
@@ -52,10 +48,11 @@
 ####  **MATERIAS**
 ```js
 {
+    descripcionMateria: {type: String,require: true,},
     profTitular: {type: mongoose.Schema.Types.ObjectId,ref: 'User'},
     profAux: {type: mongoose.Schema.Types.ObjectId,ref: 'User'},
+    carrera: {type: Schema.Types.ObjectId,ref: "Carreras",},
     anio: {type: String,required: true},
-    nombreMateria: {type: String,require: true,},
     horarioIncio: {type: String,require: true,},
     horarioFinal: {type: String,require: true,},
     notas:[
@@ -69,6 +66,30 @@
             estado:{type: String,require: true,},
         }
     ],
+    inasistencia: [
+    {
+      dia: {type: Date,},
+      idUser:{type: Schema.Types.ObjectId,ref: "User",},
+    },
+  ],
     activo: {type: Boolean,default: true}
 }
+```
+####  **PUBLICACIONES**
+```js
+{
+    autorNombre: {type: Schema.Types.ObjectId,ref: "User",},
+    tipo: {type: String,required: true,},
+    contenido: {type: String,required: true,},
+    fecha: {type: Date,required: true,},
+    imagenURL:{type: String,}
+}
+```
+
+#### **COMENTARIOS**
+```js
+{
+    autor: {type: Schema.Types.ObjectId,ref: "User",},
+    descripcion: {type: String,required: true,},
+},
 ```
