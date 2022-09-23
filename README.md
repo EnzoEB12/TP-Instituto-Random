@@ -4,10 +4,10 @@
 
 #### *Las Colecciones Creadas:⬇.*
 
-- [Usuarios](####USUARIOS)
-- [Materias](####MATERIAS)
-- [Publicaciones](####PUBLICACIONES)
-- [Comentarios](####COMENTARIOS)
+- [Usuarios](#usuarios)
+- [Materias](#materias)
+- [Publicaciones](#publicaciones)
+- [Comentarios](#comentarios)
 
 #
 
