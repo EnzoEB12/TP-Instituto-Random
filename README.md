@@ -6,6 +6,7 @@
 
 - [Usuarios](#usuarios)
 - [Materias](#materias)
+- [Carreras](#carreras)
 - [Publicaciones](#publicaciones)
 - [Comentarios](#comentarios)
 
@@ -74,6 +75,14 @@
   ],
     activo: {type: Boolean,default: true}
 }
+```
+
+####  **CARRERAS**
+```js
+{
+    nombreCarrera: {type: String,required: true,},
+    activo: {type: Boolean,default: true,},
+},
 ```
 ####  **PUBLICACIONES**
 ```js
