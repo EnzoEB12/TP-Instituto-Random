@@ -1,26 +1,30 @@
 {
   "name": "ipfdevs",
   "version": "1.0.0",
-  "description": "res social para devs del ipf",
+  "description": "Instituto Random",
   "main": "server.js",
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
     "client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "nodemon server.js"
   },
-  "author": "Dario Benitez",
+  "author": "Enzo Brito",
+  "type": "module",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
     "downloadjs": "^1.4.7",
     "express": "^4.17.1",
     "express-validator": "^6.13.0",
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.13",
+    "morgan": "^1.10.0",
     "pdf-lib": "^1.17.1",
     "request": "^2.88.2",
     "uuid": "^8.3.2"

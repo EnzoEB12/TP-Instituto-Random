@@ -1,104 +1,35 @@
+<h1 align="center">
+  <br>
+  <img src="./assets/img/logo3.png" alt="Instituto Tecnologico Formosa" width="500">
+  <br>
+</h1>
+<p align="center"><b>BRITO ENZO EXEQUIEL</b></p>
 
-# **MODELO DE BASE DE DATOS**
-### Brito Enzo Exequiel
-
-#### *Las Colecciones Creadas:⬇.*
-
-- [Usuarios](#usuarios)
-- [Materias](#materias)
-- [Carreras](#carreras)
-- [Publicaciones](#publicaciones)
-- [Comentarios](#comentarios)
+## **📌Objetivo:**
+### Una plataforma web para agilizar los procesos de: manejo de la gestión académica con respecto a las materias, notas (parciales, recuperatorios, finales), asistencias, información documental del alumno requerida por personal docente, avisos Generales. (Para todos los alumnos). Anuncios particulares (por clase).
 
 #
 
-####  **USUARIOS**
-```js
-{
-    nombre: {type: String,required: true},
-    apellido: {type: String,required: true},
-    dni: {type: String,required: true},
-    email: {type: String,required: true},
-    contrasena: {type: String,required: true},
-    fotoURL:{type: String,required: true},
-    Perfiles [
-        {
-            tipo: [
-                {
-                    alumno:{type: Boolean,default: true},
-                    profesor:{type: Boolean,default: false},
-                    administrados:{type: Boolean,default: false},
-                }
-            ],
-            dataAlumno:[
-                {
-                    carrera:{type: String}, 
-                    analitico: {type: String},
-                    certificadoDomicilio: {type: String},
-                }
-            ],
-            dataProfesores:[{datos: {type: String}}
-            ],
-            dataAdmin:[{datos: {type: String},}
-            ]
-        }
-    ],
-    activo: {type: Boolean,default: true}
-}
-```
-####  **MATERIAS**
-```js
-{
-    descripcionMateria: {type: String,require: true,},
-    profTitular: {type: mongoose.Schema.Types.ObjectId,ref: 'User'},
-    profAux: {type: mongoose.Schema.Types.ObjectId,ref: 'User'},
-    carrera: {type: Schema.Types.ObjectId,ref: "Carreras",},
-    anio: {type: String,required: true},
-    horarioIncio: {type: String,require: true,},
-    horarioFinal: {type: String,require: true,},
-    notas:[
-        {
-            Alumno: {type: mongoose.Schema.Types.ObjectId,ref: 'User'},
-            parcial1:{type: String,require: true,},
-            parcial2:{type: String,require: true,},
-            parcial3:{type: String,require: true,},
-            recuperatorio:{type: String,require: true,},
-            final:{type: String,require: true,},
-            estado:{type: String,require: true,},
-        }
-    ],
-    inasistencia: [
-    {
-      dia: {type: Date,},
-      idUser:{type: Schema.Types.ObjectId,ref: "User",},
-    },
-  ],
-    activo: {type: Boolean,default: true}
-}
-```
+### **🔰Tegnologias Utilizadas**
+<br>
+<a href="https://platzi.com/blog/que-es-mern-stack-javascript/">
+	<img src="https://1qkeyv41u1op36vgbm47q0i6-wpengine.netdna-ssl.com/wp-content/uploads/2022/02/MERN-Stack-1.png" >
+</a><br>
 
-####  **CARRERAS**
-```js
-{
-    nombreCarrera: {type: String,required: true,},
-    activo: {type: Boolean,default: true,},
-},
-```
-####  **PUBLICACIONES**
-```js
-{
-    autorNombre: {type: Schema.Types.ObjectId,ref: "User",},
-    tipo: {type: String,required: true,},
-    contenido: {type: String,required: true,},
-    fecha: {type: Date,required: true,},
-    imagenURL:{type: String,}
-}
-```
+#
+### Visualizar los modelos de la base de datos aqui: 
+📋[ModeladosDB](https://github.com/EnzoEB12/TP-Instituto-Random/blob/master/ModeloDB.md "Enlace a los modelos db")
 
-#### **COMENTARIOS**
-```js
-{
-    autor: {type: Schema.Types.ObjectId,ref: "User",},
-    descripcion: {type: String,required: true,},
-},
-```
+
+#
+
+## **LOG DE DESARROLLO**
+🔄En Proceso | | | |
+✅Terminado
+### **_Back End:_**
+
+1. 30-9-22: Rutas de Usuarios. ✅
+2. 30-9-22: Rutas de Publicaciones. ✅
+3. 30-9-22: Controlador para los usuarios. 🔄
+4. 30-9-22: Modificación del modelo de la base de datos. [ publicaciones ]. ✅
+5. 30-9-22: Conexión con la base de datos. ✅
