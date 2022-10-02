@@ -9,7 +9,7 @@ connectDB()
 const app = express()
 const PORT = process.env.PORT || 
 
-//!Fantasma???
+
 //iniciamos el mware
 console.log("xd")
 app.use(express.json());

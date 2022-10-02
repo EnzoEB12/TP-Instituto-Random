@@ -14,7 +14,7 @@ const usuariosSchema = new Schema(
                     {
                         alumno:{type: Boolean,default: false},
                         profesor:{type: Boolean,default: false},
-                        administrados:{type: Boolean,default: false},
+                        administrador:{type: Boolean,default: false},
                     }
                 ],
                 dataAlumno:[
@@ -24,9 +24,15 @@ const usuariosSchema = new Schema(
                         certificadoDomicilio: {type: String},
                     }
                 ],
-                dataProfesores:[{datos: {type: String}}
+                dataProfesores:[
+                    {
+                        titulo:{type: String}, 
+                    }
                 ],
-                dataAdmin:[{datos: {type: String},}
+                dataAdmin:[
+                    {
+                        cargo:{type: String}, 
+                    }
                 ],
             },
         ],

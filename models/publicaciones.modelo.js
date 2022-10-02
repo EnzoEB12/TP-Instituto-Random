@@ -10,8 +10,8 @@ const publicacionesSchema = new Schema(
         comentarios:[
             {
                 autor: {type: Schema.Types.ObjectId,ref: "usuariosModelo",},
-                descripcion: {type: String,required: true,},
-                fecha:{type: date, required: true},
+                descripcion: {type: String},
+                fechaComentario:{type: Date},
             },
             {
                 timestamps:{createdAt:true}
@@ -21,4 +21,4 @@ const publicacionesSchema = new Schema(
     );
 
 
-module.exports = model('publicacionesModelo', publicacionesSchema);
+export default model('publicacionesModelo', publicacionesSchema);
