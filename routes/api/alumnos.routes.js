@@ -19,11 +19,13 @@ import {
     deleteLogAlumno
   } from "../../controllers/alumnos.controller.js";
 
+import validar_jwt from "../../middlewares/validar_jwt.js";
+
 router.post('/login', Login)
-router.post('/agregar-alumno', postAlumno)
-router.get('/traer-alumno/:id', getAlumno)
-router.get('/traer-alumnos', getAlumnos)
-router.put('/editar-alumno/:id', updateAlumno)
-router.delete('/eliminar-alumno/:id', deleteLogAlumno)
+router.post('/agregar-alumno',validar_jwt, postAlumno)
+router.get('/traer-alumno/:id',validar_jwt, getAlumno)
+router.get('/traer-alumnos',validar_jwt, getAlumnos)
+router.put('/editar-alumno/:id',validar_jwt, updateAlumno)
+router.delete('/eliminar-alumno/:id',validar_jwt, deleteLogAlumno)
 
 export default router;

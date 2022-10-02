@@ -8,4 +8,4 @@ const carrerasSchema = new Schema(
     );
 
 
-module.exports = model('carrarasModelo', carrerasSchema);
+export default model('carrarasModelo', carrerasSchema);
