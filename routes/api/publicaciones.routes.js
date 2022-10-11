@@ -1,26 +1,43 @@
-//Todo: Tareas por realizar
-//Ruta para agregar nueva publicacion
-//Ruta para mostrar una sola publicacion
-//Ruta para mostrar todas las publicaciones (Dividir por tipo)
-//Ruta para eliminar una publicacion
+
 
 // Utilizamos el método Router de la librería express
 import { Router } from "express";
+
 const router = Router();
 import validar_jwt from "../../middlewares/validar_jwt.js";
+
 // Requerimos los controladores (funciones que contendrán la lógica del endpoint)
 import {
     getPublicaciones,
-    postPublicaciones,
+    getPublicacion,
+    postPublicacion,
+    updatePublicacion,
+    deletePublicacion,
+
+    getPublicacionesGlobales,
+    getPublicacionesPrivadas,
+
+    postComentarios,
+    getComentarios,
+    deleteComentarios
   } from "../../controllers/publicaciones.controllers.js";
 
+//?: Publicaciones Globales
+router.get('/ver-publicaciones-globales',validar_jwt, getPublicacionesGlobales)
 
+//?: Publicaciones Privadas
+router.get('/ver-publicaciones-privadas',validar_jwt, getPublicacionesPrivadas)
+
+//?: Publicaciones Generales
 router.get('/ver-publicaciones',validar_jwt, getPublicaciones)
-router.post('/publicar',validar_jwt, postPublicaciones)
-/* 
-router.get('/ver-publicacion/:id', controlador)
-router.put('/editar-publicacion/:id', controlador)
-router.delete('/eliminar-publicacion/:id', controlador) 
-*/
+router.get('/ver-publicacion/:id', validar_jwt, getPublicacion)
+router.post('/publicar',validar_jwt, postPublicacion)
+router.put('/editar-publicacion/:id',validar_jwt, updatePublicacion)
+router.delete('/eliminar-publicacion/:id',validar_jwt, deletePublicacion) 
 
+
+//?: Comentarios
+router.post('/comentar/:id',validar_jwt, postComentarios)
+router.get('/ver-comentarios/:id',validar_jwt, getComentarios)
+router.delete('/eliminar-comentario/comment/:id/:comment_id', validar_jwt, deleteComentarios)
 export default router;

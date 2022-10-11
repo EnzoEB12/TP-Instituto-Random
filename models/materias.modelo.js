@@ -22,7 +22,7 @@ const materiasSchema = new Schema(
         ],
         inasistencia: [
         {
-          dia: {type: Date,},
+          dia: {type: Date, default: Date.now()},
           idUser:{type: Schema.Types.ObjectId,ref: "usuariosModelo",},
         },
       ],
