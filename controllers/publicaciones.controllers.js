@@ -4,7 +4,8 @@ import publicacionesModelo from '../models/publicaciones.modelo.js';
 // Devuelve todos las Publicaciones activas de la colección
 export const getPublicaciones = async (req, res) => {
     try {
-        const publicaciones = await publicacionesModelo.find().populate('autorNombre',["nombre","apellido","fotoURL"]) // consulta para todos los documentos
+        const publicaciones = await publicacionesModelo.find().populate('autorNombre',["nombre","apellido","fotoURL"])
+        .populate('comentarios.autor',['nombre', 'apellido']) // consulta para todos los documentos
     
     // Respuesta del servidor
     res.json(publicaciones);
@@ -134,6 +135,8 @@ export const postComentarios = async (req, res) =>{
 
     const publicacion = await publicacionesModelo.findById(id)
 
+    if(!publicacion){res.status(404).json({msg:'No existe la publicacion'})}
+    
         const { 
             descripcion
         } = req.body
@@ -152,7 +155,6 @@ export const postComentarios = async (req, res) =>{
         res.json(publicacion.comentarios)
 }
 
-
 export const deleteComentarios = async (req, res) =>{
     const { id } = req.params
 
@@ -165,30 +167,14 @@ export const deleteComentarios = async (req, res) =>{
         const comentario = await publicacion.comentarios.find(comentario => comentario.id === req.params.comment_id)
     
         if(!comentario) return res.status(404).json({msg: 'El comentario no existe'})
-        //console.log(comentario)
         
-        //console.log(publicacion.comentarios)
-       /*  let contador =  -1;
-        let indece = "";
-        
-        publicacion.comentarios.map(
-            comentario => {
-                contadorTest ++;
-                if(comentario.id === req.params.comment_id){
-                    indece = contador
-                    //console.log(contadorTest)
-                }
-            }
-            
-            ) */
             function removeIndex(list){
                 for (let i=0; i < list.length; i++){
                   if (list[i].id === req.params.comment_id){return i}
                 }
               }
-              //removeIndex(publicacion.comentarios)
-             // console.log(removeIndex(publicacion.comentarios))
-        //console.log(removeComentario)
+           
+       
         //console.log(indece)
         const remove = removeIndex(publicacion.comentarios)
         publicacion.comentarios.splice(remove,1)

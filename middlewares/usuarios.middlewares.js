@@ -9,6 +9,7 @@ export const getUsuariosMidd = [verificarCampos];
 export const getUsuarioMidd = [
     param("id")
     .isMongoId()
+    .withMessage("La Id es incorrecta")
   ];
 
   export const postUsuarioMidd = [

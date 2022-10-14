@@ -3,15 +3,15 @@ import { model, Schema } from 'mongoose';
 const materiasSchema = new Schema(
     {
         descripcionMateria: {type: String,require: true,},
-        profTitular: {type: mongoose.Schema.Types.ObjectId,ref: 'usuariosModelo'},
-        profAux: {type: mongoose.Schema.Types.ObjectId,ref: 'usuariosModelo'},
-        carrera: {type: Schema.Types.ObjectId,ref: "carrerasModelo",},
+        profTitular: {type: Schema.Types.ObjectId,ref: 'usuariosModelo'},
+        profAux: {type: Schema.Types.ObjectId,ref: 'usuariosModelo'},
+        carrera: {type: Schema.Types.ObjectId,ref: 'carrerasModelo'},
         anio: {type: String,required: true},
         horarioIncio: {type: String,require: true,},
         horarioFinal: {type: String,require: true,},
         notas:[
             {
-                Alumno: {type: mongoose.Schema.Types.ObjectId,ref: 'usuariosModelo'},
+                Alumno: {type: Schema.Types.ObjectId,ref: 'usuariosModelo'},
                 parcial1:{type: String,require: true,},
                 parcial2:{type: String,require: true,},
                 parcial3:{type: String,require: true,},
@@ -31,4 +31,4 @@ const materiasSchema = new Schema(
     );
 
 
-module.exports = model('materiasModelo', materiasSchema);
+export default  model('materiasModelo', materiasSchema);
