@@ -9,7 +9,7 @@ export const getUsuariosMidd = [verificarCampos];
 export const getUsuarioMidd = [
     param("id")
     .isMongoId()
-    .withMessage("La Id es incorrecta")
+    .withMessage("La Id del usuario es incorrecta")
   ];
 
   export const postUsuarioMidd = [
@@ -19,17 +19,8 @@ export const getUsuarioMidd = [
         .isEmpty()
         .withMessage("El Nombre Es Obligatorio")
         .isString()
-        .withMessage("Nombre mal ingresado")
-        .custom(
-          async (nombre) => {
-              //console.log(nombre)
-            const user = await usuariosModelo.count({nombre});
-            //console.log(user);
-            if (user > 0) {
-              return Promise.reject("El Nombre ingresado ya se encuentra en la bd");
-            }
-          },
-        ),
+        .withMessage("Nombre mal ingresado"),
+        
       check("apellido")
         .exists()
         .not()
@@ -37,6 +28,7 @@ export const getUsuarioMidd = [
         .withMessage("El Nombre Es Obligatorio")
         .isString()
         .withMessage("Nombre mal ingresado"),
+
       check("dni")
         .exists()
         .not()
@@ -52,6 +44,7 @@ export const getUsuarioMidd = [
             }
           },
         ),
+
         check("email")
         .exists()
         .not()
@@ -69,6 +62,7 @@ export const getUsuarioMidd = [
             }
           },
         ),
+
         check("contrasena")
         .exists()
         .not()
