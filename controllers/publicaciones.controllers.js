@@ -124,6 +124,7 @@ export const getComentarios = async (req, res) =>{
 
     const publicacion = await publicacionesModelo.findById(id).populate('comentarios.autor',["nombre","apellido","fotoURL"])
 
+    if(!publicacion){res.status(404).json({msg:'No existe la publicacion'})}
     // Respuesta del servidor
     res.json(publicacion.comentarios);
 }
@@ -151,7 +152,7 @@ export const postComentarios = async (req, res) =>{
         res.json(publicacion.comentarios)
 }
 
-//!Falta soluccionar Error
+
 export const deleteComentarios = async (req, res) =>{
     const { id } = req.params
 
@@ -161,16 +162,38 @@ export const deleteComentarios = async (req, res) =>{
         //console.log(publi)
         if(!publicacion) return res.status(404).json({msg:'La Publicacion No Existe'})
 
-        console.log(publicacion.comentarios)
-        //await publicacion.comentarios.find(comentario => comentario.id === req.params.comment_id)
-        //if(!comentario) return res.status(404).json({msg: 'el comentario no existe'})
-        const id_comentario = req.params.comment_id
-        const comentarios = publicacion.comentarios
-
-        await comentarios.findByIdAndDelete(id_comentario)
+        const comentario = await publicacion.comentarios.find(comentario => comentario.id === req.params.comment_id)
+    
+        if(!comentario) return res.status(404).json({msg: 'El comentario no existe'})
         //console.log(comentario)
-        //const id_comentario = comentario._id
-        //await comentario.Delete(id_comentario)
+        
+        //console.log(publicacion.comentarios)
+       /*  let contador =  -1;
+        let indece = "";
+        
+        publicacion.comentarios.map(
+            comentario => {
+                contadorTest ++;
+                if(comentario.id === req.params.comment_id){
+                    indece = contador
+                    //console.log(contadorTest)
+                }
+            }
+            
+            ) */
+            function removeIndex(list){
+                for (let i=0; i < list.length; i++){
+                  if (list[i].id === req.params.comment_id){return i}
+                }
+              }
+              //removeIndex(publicacion.comentarios)
+             // console.log(removeIndex(publicacion.comentarios))
+        //console.log(removeComentario)
+        //console.log(indece)
+        const remove = removeIndex(publicacion.comentarios)
+        publicacion.comentarios.splice(remove,1)
+
+        await publicacion.save(publicacion)
         return res.json(publicacion.comentarios)
 
     } catch (error) {
