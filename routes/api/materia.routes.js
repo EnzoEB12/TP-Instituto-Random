@@ -28,8 +28,8 @@ router.put('/editar-nota/:id/:nota_id', updateNota)
 router.delete('/eliminar-nota/:id/:nota_id', deleteNota)
 
 //?Rutas para las inasistencias
-router.post('/guardar-inasistencia', postInasistencia)
-router.delete('/eliminar-inasistencia', deleteInasistencia)
+router.post('/guardar-inasistencia/:id', postInasistencia)
+router.delete('/eliminar-inasistencia/:id/:inasistencia_id', deleteInasistencia)
 
 
 export default router;
