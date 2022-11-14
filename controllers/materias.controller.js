@@ -18,7 +18,9 @@ export const getMateria = async (req, res) => {
   const { id } = req.params;
   const materia = await materiasModelo
     .findById(id)
-    .populate("profTitular", ["nombre", "apellido", "fotoURL"]); // consulta para todos los documentos
+    .populate("profTitular", ["nombre", "apellido", "fotoURL"])
+    .populate("profAux", ["nombre", "apellido", "fotoURL"])
+    .populate("notas.Alumno", ["nombre", "apellido"]);; // consulta para todos los documentos
 
   // Respuesta del servidor
   res.json(materia);

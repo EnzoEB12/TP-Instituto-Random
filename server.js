@@ -4,6 +4,7 @@ import morgan from "morgan";
 import "dotenv/config.js";
 import connectDB from './config/db.js'
 import { rutas } from './routes/api/index.routes.js'
+import path, { join } from 'path'
 
 //conectamos a db
 connectDB()
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 5000
 console.log("xd")
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+/* app.use(express.static(join(CURRENT_DIR, './Images'))) */
 
 app.use(morgan("dev"));
 app.use(cors())

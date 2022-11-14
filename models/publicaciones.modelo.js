@@ -3,6 +3,7 @@ import { model, Schema } from 'mongoose';
 const publicacionesSchema = new Schema(
     {
         autorNombre: {type: Schema.Types.ObjectId,ref: "usuariosModelo",},
+        materia: {type: Schema.Types.ObjectId,ref: "materiasModelo",},
         tipo: {type: String,required: true,},
         contenido: {type: String,required: true,},
         fecha: {type: Date, default: Date.now(),},

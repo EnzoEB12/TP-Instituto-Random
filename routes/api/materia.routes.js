@@ -19,6 +19,7 @@ import {
   } from "../../controllers/materias.controller.js";
 
 
+router.get('/ver-materia/:id', getMateria)
 router.get('/ver-materias', getMaterias)
 router.post('/guardar-materia', postMateria)
 

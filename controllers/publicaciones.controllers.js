@@ -17,7 +17,7 @@ export const getPublicaciones = async (req, res) => {
 // Devuelve todos las Publicaciones globales de la colección
 export const getPublicacionesGlobales = async (req, res) => {
     try {
-        const publicaciones = await publicacionesModelo.find({tipo:'Global'}).populate('autorNombre',["nombre","apellido","fotoURL"]) // consulta para todos los documentos
+        const publicaciones = await publicacionesModelo.find({tipo:'Global'}).populate('autorNombre',["nombre","apellido","fotoURL"]).populate('comentarios.autor',['nombre', 'apellido']) // consulta para todos los documentos
     
     // Respuesta del servidor
     res.json(publicaciones);
@@ -39,6 +39,19 @@ export const getPublicacionesPrivadas = async (req, res) => {
 }
 
 // Devuelve una sola publicacion de la colección
+export const getPublicacionMateria = async (req, res) => {
+    const { id } = req.params
+    try {
+        const publi= await publicacionesModelo.find({tipo:'Privado', materia:id}).populate('autorNombre',["nombre","apellido","fotoURL"]).populate('comentarios.autor',['nombre', 'apellido']) // consulta para todos los documentos
+    
+    // Respuesta del servidor
+    res.json(publi);
+    } catch (error) {
+        console.log("Error al traer una publicacion: ", error)
+    }
+}
+
+// Devuelve una sola publicacion de la colección
 export const getPublicacion = async (req, res) => {
     const { id } = req.params
     try {
@@ -51,6 +64,37 @@ export const getPublicacion = async (req, res) => {
     }
 }
 
+
+// Controlador que almacena una nueva publicación
+export const postPublicacionPrivado = async (req, res) => {
+    // Desestructuramos la información recibida del cliente 
+    const { id } = req.params
+
+   const { 
+    tipo,
+    contenido,
+    imagenURL
+   } = req.body
+
+   try {
+    const autorNombre = req.usuario._id
+    const materia = id
+
+   const publi = new publicacionesModelo({
+    autorNombre,
+    materia,
+    tipo,
+    contenido,
+    imagenURL
+});
+    //console.log(publi)
+   await publi.save() 
+
+   res.json({msg: 'La Publicacion Privada se creo correctamente'});
+   } catch (error) {
+    console.log("Error al crear una publicacion: ", error)
+   }
+}
 // Controlador que almacena una nueva publicación
 export const postPublicacion = async (req, res) => {
     // Desestructuramos la información recibida del cliente 

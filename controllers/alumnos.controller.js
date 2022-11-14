@@ -1,7 +1,29 @@
 import usuarioModelo from "../models/usuarios.modelo.js";
 import generar_jwt from "../helpers/generar_jwt.js";
+/* import fs from 'fs' */
 
+/* export const test = async (req, res) => {
+  try {
+    
+    console.log(req.file)
+      res.json("funcionando")
+  } catch (error) {
+      console.log(error)
+      res.status(500).send('server error')
+  }
+} */
 // Controlador para login del usuario y devolver un token
+
+export const loginUser = async (req, res) => {
+  try {
+      const user = await usuarioModelo.findById(req.usuario.id).select('-contrasena')
+      res.json(user)
+  } catch (error) {
+      console.log(error)
+      res.status(500).send('server error')
+  }
+}
+
 export const Login = async (req, res) => {
   const { dni, contrasena } = req.body;
 
@@ -27,7 +49,6 @@ export const Login = async (req, res) => {
     const token = await generar_jwt(user.id);
 
     res.json({
-      msg: "Bienvenido",
       token, //se envia el token generado
     });
   } catch (error) {
@@ -58,8 +79,10 @@ export const getAlumno = async (req, res) => {
 
 // Controlador que almacena un nuevo usuario
 export const postAlumno = async (req, res) => {
-  // Desestructuramos la información recibida del cliente
-  //console.log(req.body)
+  
+  /* fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1])
+
+  const fotoURL = req.file.path */
   const {
     nombre,
     apellido,

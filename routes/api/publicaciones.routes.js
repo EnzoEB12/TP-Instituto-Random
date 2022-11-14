@@ -13,9 +13,11 @@ import {
     postPublicacion,
     updatePublicacion,
     deletePublicacion,
+    postPublicacionPrivado,
 
     getPublicacionesGlobales,
     getPublicacionesPrivadas,
+    getPublicacionMateria,
 
     postComentarios,
     getComentarios,
@@ -27,11 +29,16 @@ router.get('/ver-publicaciones-globales',validar_jwt, getPublicacionesGlobales)
 
 //?: Publicaciones Privadas
 router.get('/ver-publicaciones-privadas',validar_jwt, getPublicacionesPrivadas)
+//?: Publicaciones Privadas
+router.get('/ver-publicaciones-materia/:id',validar_jwt, getPublicacionMateria)
 
 //?: Publicaciones Generales
 router.get('/ver-publicaciones',validar_jwt, getPublicaciones)
 router.get('/ver-publicacion/:id', validar_jwt, getPublicacion)
 router.post('/publicar',validar_jwt, postPublicacion)
+
+router.post('/publicar-privado/:id',validar_jwt, postPublicacionPrivado)
+
 router.put('/editar-publicacion/:id',validar_jwt, updatePublicacion)
 router.delete('/eliminar-publicacion/:id',validar_jwt, deletePublicacion) 
 

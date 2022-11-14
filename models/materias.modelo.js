@@ -12,11 +12,11 @@ const materiasSchema = new Schema(
         notas:[
             {
                 Alumno: {type: Schema.Types.ObjectId,ref: 'usuariosModelo'},
-                parcial1:{type: String,require: true,},
-                parcial2:{type: String,require: true,},
-                parcial3:{type: String,require: true,},
-                recuperatorio:{type: String,require: true,},
-                final:{type: String,require: true,},
+                parcial1:{type: String,default: null},
+                parcial2:{type: String,default: null},
+                parcial3:{type: String,default: null},
+                recuperatorio:{type: String,default: null},
+                final:{type: String,default: null},
                 estado:{type: String,require: true,},
             }
         ],
