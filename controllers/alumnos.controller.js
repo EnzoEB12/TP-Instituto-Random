@@ -1,6 +1,5 @@
 import usuarioModelo from "../models/usuarios.modelo.js";
 import generar_jwt from "../helpers/generar_jwt.js";
-/* import fs from 'fs' */
 
 /* export const test = async (req, res) => {
   try {
@@ -82,6 +81,7 @@ export const postAlumno = async (req, res) => {
   
   /* fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1])
 
+
   const fotoURL = req.file.path */
   const {
     nombre,
@@ -89,7 +89,6 @@ export const postAlumno = async (req, res) => {
     dni,
     email,
     contrasena,
-    fotoURL,
     perfiles: [
       {
         tipo: [{ alumno }],
@@ -124,7 +123,13 @@ export const postAlumno = async (req, res) => {
         },
       ],
     });
-    await alum.save();
+
+    if(req.file){
+      const { filename }= req.file
+      alum.setImgUrl(filename) 
+  }
+  console.log(alum)
+    //await alum.save();
 
     res.json({ msg: "El usuario alumno se creo correctamente" });
   } catch (error) {
