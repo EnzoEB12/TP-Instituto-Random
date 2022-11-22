@@ -89,14 +89,25 @@ export const postAlumno = async (req, res) => {
     dni,
     email,
     contrasena,
+    fotoURL,
     perfiles: [
       {
-        tipo: [{ alumno }],
-        dataAlumno: [{ carrera, analitico, certificadoDomicilio }],
+        tipo: [
+          {
+            alumno,
+          },
+        ],
+        dataAlumno: [
+          {
+            carrera,
+            analitico,
+            certificadoDomicilio,
+          },
+        ],
       },
     ],
   } = req.body;
-
+  
   try {
     // Se alamacena el nuevo usuario en la base de datos
     const alum = new usuarioModelo({
@@ -124,12 +135,12 @@ export const postAlumno = async (req, res) => {
       ],
     });
 
-    if(req.file){
+    /* if(req.file){
       const { filename }= req.file
-      alum.setImgUrl(filename) 
+      alum.$setfotoURL(filename) 
   }
-  console.log(alum)
-    //await alum.save();
+  console.log(alum) */
+    await alum.save();
 
     res.json({ msg: "El usuario alumno se creo correctamente" });
   } catch (error) {

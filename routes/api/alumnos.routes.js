@@ -36,7 +36,7 @@ router.get('/loginUser',validar_jwt, loginUser)
 
 //Todos: Ruta para los admins
 /* router.post('/agregar-alumno',upload.single('fotoURL'),validar_jwt,postUsuarioMidd,validarAdmin, postAlumno) */
-router.post('/agregar-alumno',upload.single('fotoURL'),validar_jwt,postUsuarioMidd,validarAdmin, postAlumno)
+router.post('/agregar-alumno',validar_jwt,postUsuarioMidd,validarAdmin, postAlumno)
 router.get('/traer-alumnos',validar_jwt,getUsuariosMidd,validarAdmin, getAlumnos)
 router.put('/editar-alumno/:id',validar_jwt, updateAlumno)
 router.delete('/eliminar-alumno/:id',validar_jwt, deleteLogAlumno)
