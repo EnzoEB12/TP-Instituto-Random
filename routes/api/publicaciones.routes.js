@@ -25,7 +25,7 @@ import {
   } from "../../controllers/publicaciones.controllers.js";
 
 //?: Publicaciones Globales
-router.get('/ver-publicaciones-globales',validar_jwt, getPublicacionesGlobales)
+router.get('/ver-publicaciones-globales', getPublicacionesGlobales)
 
 //?: Publicaciones Privadas
 router.get('/ver-publicaciones-privadas',validar_jwt, getPublicacionesPrivadas)
